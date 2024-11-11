@@ -9,8 +9,8 @@ window = create_window("Das ist ein Testfenster")
 glClearColor(0.8, 0.2, 0.1, 0)
 
 # load shader programs
-vertex_shader_source_triangle = read_shader_source('triangle.vertex')
-fragment_shader_source_triangle = read_shader_source('triangle.fragment')
+vertex_shader_source_triangle = read_shader_source('C:\CG_Code\Woche10\start\shaders\triangle.vertex')
+fragment_shader_source_triangle = read_shader_source('C:\CG_Code\Woche10\start\shaders\triangle.fragment')
 
 shader_program_triangle = create_shader_program(vertex_shader_source_triangle, fragment_shader_source_triangle)
 
