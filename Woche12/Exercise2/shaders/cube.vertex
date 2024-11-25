@@ -1,0 +1,17 @@
+#version 330 core
+layout(location = 0) in vec3 in_vertex;
+layout(location = 1) in vec3 in_color;
+
+uniform mat4 model_matrix;
+uniform mat4 view_matrix;
+uniform mat4 projection_matrix;
+
+// output color to fragment shader
+out vec4 v_color;
+void main()
+{
+    // output vertex position
+    gl_Position = projection_matrix * view_matrix * model_matrix * vec4(in_vertex, 1.0);
+    // output vertex color
+    v_color = vec4(in_color, 1.0);
+}

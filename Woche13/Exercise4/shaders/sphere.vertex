@@ -1,0 +1,55 @@
+#version 330 core
+layout(location = 0) in vec3 in_vertex;
+layout(location = 1) in vec3 in_normal;
+
+uniform mat4 view_matrix;
+uniform mat4 projection_matrix;
+uniform mat4 model_matrix;
+
+uniform vec3 color;
+
+// output color to fragment shader
+out vec4 v_color;
+void main()
+{
+    // output vertex position
+    gl_Position = projection_matrix * view_matrix * model_matrix * vec4(in_vertex, 1.0);
+
+    // illumination is calculated in camera space
+    vec4 camera_space_position_vertex = view_matrix * model_matrix * vec4(in_vertex, 1.0);
+
+    // normal transform in camera coordinates
+    mat3 normMatrix = mat3(transpose(inverse(view_matrix * model_matrix)));
+    vec3 n = normMatrix * normalize(in_normal);
+
+    // set light constants (could also be passed from main program to shader)
+    float ambient = 0.1;
+    float diffuse = 1.0;
+    float specular = 0.8;
+    float shininess = 90.0;
+
+    // set base color (could also be passed from the main program)
+    vec4 color = vec4(color, 1.0);
+
+    // set light position
+    vec4 camera_space_position_light = view_matrix * vec4(20, 4, -3, 1.0);
+
+    // light and view vectors, in camera coordinates
+    vec3 l = normalize(camera_space_position_light.xyz - vec3(camera_space_position_vertex));
+    vec3 v = normalize(-vec3(camera_space_position_vertex));
+
+    // set ambient light contribution
+    v_color = ambient * color;
+
+    // add diffuse contribution
+    float diff = max(dot(n, l), 0.0);
+    if (diff > 0.0) {
+        v_color += diffuse * diff * color;
+        // reflection vector
+        vec3 r = normalize(reflect(-l, n));
+        // add specular contribution
+        float spec = max(dot(r, v), 0.0);
+        if (spec > 0.0)
+            v_color += specular * pow(spec, shininess) * color;
+    }
+}

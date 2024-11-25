@@ -1,0 +1,10 @@
+#version 330 core
+// input fragment data
+in vec4 v_color;
+// output fragment color
+out vec4 f_color;
+void main()
+{
+    // output fragment color
+    f_color = v_color;
+}

@@ -1,0 +1,2 @@
+Im Konstruktor der Sphere-Klasse auf Zeilen 22 und 23 findest du die relevanten Variablen für die Einstellung, wie detailliert die Kugel sein soll. Sector_count betrifft die "Längengrade" und stack_count die "Breitengrade", wenn wir uns als Vergleich einen Globus vorstellen.
+Rotation und Translation findest du in den Funktionen der Zeilen 55 bis 60. Relevantes passiert diesbezüglich auch im main-File auf Zeilen 13 und 14, resp. 60.

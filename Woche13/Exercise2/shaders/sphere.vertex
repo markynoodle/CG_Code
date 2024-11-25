@@ -1,0 +1,23 @@
+#version 330 core
+layout(location = 0) in vec3 in_vertex;
+layout(location = 1) in vec3 in_normal;
+
+uniform mat4 view_matrix;
+uniform mat4 projection_matrix;
+uniform mat4 model_matrix;
+
+// output color to fragment shader
+out vec4 v_color;
+void main()
+{
+    // output vertex position
+    gl_Position = projection_matrix * view_matrix * model_matrix * vec4(in_vertex, 1.0);
+
+    // normal transform in camera coordinates
+    mat3 normMatrix = mat3(transpose(inverse(view_matrix * model_matrix)));
+    vec3 n = normMatrix * normalize(in_normal);
+
+    // choose one of these lines
+    v_color = vec4(n, 1.0); // normal in camera space
+    v_color = vec4(in_normal, 1.0); // normal in model space
+}
