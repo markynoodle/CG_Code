@@ -6,9 +6,9 @@ os.chdir(os.path.dirname(__file__)) #fix for vs studio users: set current workin
 
 window = create_window("Das ist ein Testfenster")
 
-glClearColor(0.5, 0.5, 0.5, 0)
+glClearColor(1, 1, 1, 0)
 
-position_sphere1 = glm.vec3(10,5,4)
+position_sphere1 = glm.vec3(10,5,4) 
 position_sphere2 = glm.vec3(-5,-9,-13)
 
 sphere1 = Sphere(random.randint(0, 100) / 1000, glm.vec3(random.randint(0, 100) / 100, random.randint(0, 100) / 100, random.randint(0, 100) / 100), position_sphere2-position_sphere1, glm.vec3(0.8,0.5,0.2))

@@ -8,11 +8,11 @@ from cg_helper import *
 
 window = create_window("Das ist ein Testfenster")
 
-glClearColor(0.5, 0.5, 0.5, 0)
+glClearColor(1, 1, 0.5, 0)
 
 # load shader programs
-vertex_shader_source_cube = read_shader_source('cube.vertex')
-fragment_shader_source_cube = read_shader_source('cube.fragment')
+vertex_shader_source_cube = read_shader_source(r'C:\CG_Code\Woche11\start\shaders\cube.vertex')
+fragment_shader_source_cube = read_shader_source(r'C:\CG_Code\Woche11\start\shaders\cube.fragment')
 
 shader_program_cube = create_shader_program(vertex_shader_source_cube, fragment_shader_source_cube)
 

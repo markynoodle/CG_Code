@@ -22,7 +22,7 @@ def create_window(window_name, width=800, height=800):
 
 
 def read_shader_source(file_path):
-    with open(os.path.join("shaders", file_path), 'r') as shader_file:
+    with open(file_path, 'r') as shader_file:
         shader_source = shader_file.read()
     return shader_source
 
